@@ -218,6 +218,7 @@ export default function Lab1() {
 
         <input type="radio" name="radio-genre" id="wd-radio-scifi"/>
         <label htmlFor="wd-radio-scifi">Science Fiction</label><br />
+        
         <input type="radio" name="radio-genre" id="wd-radio-fantasy"/>
         <label htmlFor="wd-radio-fantasy">Fantasy</label>    
 

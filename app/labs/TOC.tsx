@@ -24,7 +24,7 @@ export default function TOC() {
       </li>
       <li>
         <Link href="https://github.com/Jf-neu/kambaz-next-js" id="wd-github">
-          Lab 3{" "}
+          Github{" "}
         </Link>
       </li>
       <li>

@@ -4,6 +4,7 @@ import TailwindFilters from "./tailwind-filter";
 import TailwindResponsiveDesign from "./tailwind-responsive-design";
 import TailwindSpacing from "./tailwind-spacing";
 import TailwindTypography from "./tailwind-typography";
+import TailwindGrids from "./tailwind-grids";
 
 export default function TailwindLab() {
  return (
@@ -29,6 +30,11 @@ export default function TailwindLab() {
       <div>
         <TailwindFilters/>
       </div>
+
+      <div>
+        <TailwindGrids/>
+      </div>
+
 
    </div>
 

@@ -1,105 +1,222 @@
 import Link from "next/link";
-import Image from "next/image";
-export default function Dashboard() {
- return (
-  <div id="wd-dashboard">
-   {/* Dashboard Title */}
-   <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
-   {/* Published Courses Section */}
-   <h2 id="wd-dashboard-published">Published Courses (12)</h2> <hr />
-   <div id="wd-dashboard-courses">
-    {/* Course 1 */}
-    <div className="wd-dashboard-course">
-     <Link href="/courses/1201" className="wd-dashboard-course-link">
-      <Image src="/images/reactjs.jpg" width={200} height={150} alt="reactjs" />
-      <div>
-       <h5> CS1234 React JS </h5>
-       <p className="wd-dashboard-course-title">
-        Full Stack software developer
-       </p>
-       <button> Go </button>
-      </div>
-     </Link>
-    </div>
-    {/* Course 2 */}
-    <div className="wd-dashboard-course">      
-      <Link href="/courses/1202" className="wd-dashboard-course-link">
-      <Image src="/images/2-course-image.jpg" width={200} height={150} alt="digitalPhilosophy" />
-      <div>
-       <h5> CS1202 Digital Philosophy </h5>
-       <p className="wd-dashboard-course-title">
-        Philosopher of the digital age
-       </p>
-       <button> Go </button>
-      </div>
-     </Link>
-    </div>
-    {/* Course 3 */}
-    <div className="wd-dashboard-course">      
-      <Link href="/courses/1203" className="wd-dashboard-course-link">
-      <Image src="/images/3-course-image.jpg" width={200} height={150} alt="QA" />
-      <div>
-       <h5> CS1203 Quality Assurance </h5>
-       <p className="wd-dashboard-course-title">
-        Full Time Quality Assurance Engineer
-       </p>
-       <button> Go </button>
-      </div>
-     </Link>
-    </div>
-    {/* Course 4 */}
-    <div className="wd-dashboard-course">      
-      <Link href="/courses/1204" className="wd-dashboard-course-link">
-      <Image src="/images/4-course-image.jpg" width={200} height={150} alt="DS" />
-      <div>
-       <h5> CS1204 Data Structures </h5>
-       <p className="wd-dashboard-course-title">
-        Introduction to Data Science
-       </p>
-       <button> Go </button>
-      </div>
-     </Link>
-    </div>
-    {/* Course 5 */}
-    <div className="wd-dashboard-course">      
-      <Link href="/courses/1205" className="wd-dashboard-course-link">
-      <Image src="/images/5-course-image.jpg" width={200} height={150} alt="Hardware" />
-      <div>
-       <h5> CS1205 Hardware Engineering </h5>
-       <p className="wd-dashboard-course-title">
-        Computer Hardware Basics
-       </p>
-       <button> Go </button>
-      </div>
-     </Link>
-    </div>
-    {/* Course 6 */}
-    <div className="wd-dashboard-course">      
-      <Link href="/courses/1206" className="wd-dashboard-course-link">
-      <Image src="/images/6-course-image.jpg" width={200} height={150} alt="gamedev" />
-      <div>
-       <h5> CS1206 Game Development </h5>
-       <p className="wd-dashboard-course-title">
-        Introduction to Game Development
-       </p>
-       <button> Go </button>
-      </div>
-     </Link>
-    </div>
-    {/* Course 7 */}
-    <div className="wd-dashboard-course">      
-      <Link href="/courses/1207" className="wd-dashboard-course-link">
-      <Image src="/images/7-course-image.jpg" width={200} height={150} alt="gamedesign" />
-      <div>
-       <h5> CS1207 Game Design </h5>
-       <p className="wd-dashboard-course-title">
-        What remained of Edith Finch? 
-       </p>
-       <button> Go </button>
-      </div>
-     </Link>
-    </div>
-   </div>
-  </div>
-);}
+import {
+  Row,
+  Col,
+  Card,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardText,
+  Button,
+} from "react-bootstrap";
 
+export default function Dashboard() {
+  return (
+    <div id="wd-dashboard">
+      {/* Dashboard Title */}
+      <h1 id="wd-dashboard-title">Dashboard</h1> <hr />
+      {/* Published Courses Section */}
+      <h2 id="wd-dashboard-published">Published Courses (7)</h2> <hr />
+      <div id="wd-dashboard-courses">
+        <Row xs={1} md={5} className="g-4">
+          {/* Course 1 */}
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/courses/1201"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/reactjs.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS1234 React JS
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Full Stack software developer
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+          {/* Course 2 */}
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/courses/1202"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/2-course-image.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS1202 Digital Philosophy
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Philosopher of the digital age
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+          {/* Course 3 */}
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/courses/1203"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/3-course-image.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS1203 Quality Assurance
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Full Time Quality Assurance Engineer
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+          {/* Course 4 */}
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/courses/1204"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/4-course-image.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS1204 Data Structures
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Introduction to Data Science
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+          {/* Course 5 */}
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/courses/1205"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/5-course-image.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS1205 Hardware Engineering
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Computer Hardware Basics
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+          {/* Course 6 */}
+          <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/courses/1206"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/6-course-image.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS1206 Game Development
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    Introduction to Game Development
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+          {/* Course 7 */}
+                    <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+            <Card>
+              <Link
+                href="/courses/1207"
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+              >
+                <CardImg
+                  variant="top"
+                  src="/images/7-course-image.jpg"
+                  width="100%"
+                  height={160}
+                />
+                <CardBody>
+                  <CardTitle className="wd-dashboard-course-title text-nowrap overflow-hidden">
+                    CS1207 Game Design
+                  </CardTitle>
+                  <CardText
+                    className="wd-dashboard-course-description overflow-hidden"
+                    style={{ height: "100px" }}
+                  >
+                    What remained of Edith Finch?
+                  </CardText>
+                  <Button variant="primary">Go</Button>
+                </CardBody>
+              </Link>
+            </Card>
+          </Col>
+        </Row>
+      </div>
+    </div>
+  );
+}

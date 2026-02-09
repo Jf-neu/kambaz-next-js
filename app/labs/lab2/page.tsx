@@ -5,8 +5,8 @@ import Borders from "./borders";
 import Paddings from "./padding";
 import Margins from "./margins";
 import RoundedCorners from "./corners";
-import Dimensions from "./dimensions"; 
-import Positions from "./positions"; 
+import Dimensions from "./dimensions";
+import Positions from "./positions";
 import ZIndex from "./z-index";
 import Float from "./float";
 import GridLayout from "./grid-layout";
@@ -14,10 +14,17 @@ import Flex from "./flex";
 import MediaQueriesDemo from "./media-queries-demo";
 import ReactIconsSampler from "./react-icon-samplers";
 import Link from "next/link";
+import Container from "react-bootstrap/esm/Container";
+import BootstrapGrids from "./bootstrap-grids";
+import ScreenSizeLabel from "./bootstrap-screen-size-label";
+import BootstrapTables from "./bootstrap-tables";
+import BootstrapLists from "./bootstrap-lists";
+import BootstrapForms from "./bootstrap-forms";
+import BootstrapNavigations from "./bootstrap-navigations";
 
 export default function Lab2() {
   return (
-    <div id="wd-lab2">
+    <Container>
       <h2>Lab 2 - Cascading Style Sheets</h2>
 
       {/* Style Attribute */}
@@ -79,66 +86,93 @@ export default function Lab2() {
       </div>
 
       <div>
-        <ForegroundColors/>
+        <ForegroundColors />
       </div>
 
       <div>
-        <BackgroundColors/>
+        <BackgroundColors />
       </div>
 
       <div>
-        <Borders/>
-      </div> 
-
-      <div>
-        <Paddings/>
-      </div> 
-
-      <div>
-        <Margins/>
+        <Borders />
       </div>
 
       <div>
-        <RoundedCorners/>
+        <Paddings />
       </div>
 
       <div>
-        <Dimensions/>
+        <Margins />
       </div>
 
       <div>
-        <Positions/>
+        <RoundedCorners />
       </div>
 
       <div>
-        <ZIndex/>
+        <Dimensions />
       </div>
 
       <div>
-        <Float/>
+        <Positions />
       </div>
 
       <div>
-        <GridLayout/>
+        <ZIndex />
       </div>
 
       <div>
-        <Flex/>
+        <Float />
       </div>
 
       <div>
-        <MediaQueriesDemo/>
+        <GridLayout />
       </div>
 
       <div>
-        <ReactIconsSampler/>
+        <Flex />
+      </div>
+
+      <div>
+        <MediaQueriesDemo />
+      </div>
+
+      <div>
+        <ReactIconsSampler />
       </div>
 
       <div id="wd-css-tailwind-link">
         <h3>Tailwind</h3>
-        <Link href="/labs/lab2/tailwind" id="wd-tailwind-link">Tailwind</Link><br/>
+        <Link href="/labs/lab2/tailwind" id="wd-tailwind-link">
+          Tailwind
+        </Link>
+        <br />
       </div>
 
-    </div>
+      <div>
+        <BootstrapGrids />
+      </div>
+      
+      <div>
+        <ScreenSizeLabel />
+      </div>
+
+      <div>
+        <BootstrapTables />
+      </div>
+
+      <div>
+        <BootstrapLists />
+      </div>
+
+      <div>
+        <BootstrapForms />
+      </div>
+
+      <div>
+        <BootstrapNavigations />
+      </div>
+
+    </Container>
   );
 }

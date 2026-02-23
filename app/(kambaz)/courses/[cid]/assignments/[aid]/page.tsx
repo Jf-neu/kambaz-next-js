@@ -9,7 +9,7 @@ export default function AssignmentEditor() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const assignment = assignments.find((assignment: any) => assignment._id === aid)
 
-  if (assignment === null) {
+  if (!assignment) {
     redirect("/not_found");
   }
 
@@ -24,7 +24,7 @@ export default function AssignmentEditor() {
           <FormControl
             id="wd-name"
             placeholder="assignment name"
-            defaultValue={aid}
+            defaultValue={assignment.title}
             className="mb-4"
             style={{ maxWidth: "600px" }}
           />

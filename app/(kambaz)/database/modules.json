@@ -112,5 +112,100 @@
     "name": "Spacecraft Systems Engineering",
     "description": "Overview of spacecraft systems and subsystems engineering.",
     "course": "RS103"
+  },
+
+  {
+    "_id": "M401",
+    "name": "Foundations of Organic Structure",
+    "description": "Atomic structure, bonding, and functional groups in organic molecules.",
+    "course": "RS104"
+  },
+  {
+    "_id": "M402",
+    "name": "Reaction Mechanisms",
+    "description": "Mechanistic pathways including substitution, elimination, and addition reactions.",
+    "course": "RS104"
+  },
+  {
+    "_id": "M403",
+    "name": "Spectroscopy and Synthesis",
+    "description": "Structure determination techniques and multi-step organic synthesis strategies.",
+    "course": "RS104"
+  },
+
+  {
+    "_id": "M501",
+    "name": "Inorganic Bonding and Structure",
+    "description": "Chemical bonding theories, symmetry, and molecular geometry in inorganic compounds.",
+    "course": "RS105"
+  },
+  {
+    "_id": "M502",
+    "name": "Coordination Chemistry",
+    "description": "Study of coordination complexes, ligands, and crystal field theory.",
+    "course": "RS105"
+  },
+  {
+    "_id": "M503",
+    "name": "Materials and Catalysis",
+    "description": "Applications of inorganic chemistry in catalysis and advanced materials.",
+    "course": "RS105"
+  },
+
+  {
+    "_id": "M601",
+    "name": "Thermodynamics",
+    "description": "Energy, entropy, and equilibrium principles in chemical systems.",
+    "course": "RS106"
+  },
+  {
+    "_id": "M602",
+    "name": "Chemical Kinetics",
+    "description": "Reaction rates, mechanisms, and dynamic behavior of chemical processes.",
+    "course": "RS106"
+  },
+  {
+    "_id": "M603",
+    "name": "Quantum Chemistry and Spectroscopy",
+    "description": "Quantum mechanical models and spectroscopic methods for molecular analysis.",
+    "course": "RS106"
+  },
+
+  {
+    "_id": "M701",
+    "name": "Elvish Languages",
+    "description": "Study of Sindarin and Quenya grammar, phonology, and writing systems.",
+    "course": "RS107"
+  },
+  {
+    "_id": "M702",
+    "name": "Dwarvish and Mannish Scripts",
+    "description": "Examination of Khuzdul and the scripts of Men across Middle-earth cultures.",
+    "course": "RS107"
+  },
+  {
+    "_id": "M703",
+    "name": "Philology and Historical Linguistics",
+    "description": "Evolution of languages and comparative linguistic analysis of ancient texts.",
+    "course": "RS107"
+  },
+
+  {
+    "_id": "M801",
+    "name": "Foundations of Inter-species Relations",
+    "description": "Historical context and theory behind alliances and rivalries among Middle-earth races.",
+    "course": "RS108"
+  },
+  {
+    "_id": "M802",
+    "name": "Diplomacy and Conflict Resolution",
+    "description": "Negotiation strategies, treaties, and case studies of diplomatic events.",
+    "course": "RS108"
+  },
+  {
+    "_id": "M803",
+    "name": "Leadership and Governance",
+    "description": "Leadership models and governance structures across diverse societies of Middle-earth.",
+    "course": "RS108"
   }
 ]

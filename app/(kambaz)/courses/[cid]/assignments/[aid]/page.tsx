@@ -1,13 +1,16 @@
-"use client"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import { Row, Col, FormControl, FormSelect } from "react-bootstrap";
 import { redirect, useParams } from "next/navigation";
+import Link from "next/link";
 import * as db from "../../../../database";
 
 export default function AssignmentEditor() {
   const { aid } = useParams();
   const assignments = db.assignments;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const assignment = assignments.find((assignment: any) => assignment._id === aid)
+  const assignment = assignments.find(
+    (assignment: any) => assignment._id === aid,
+  );
 
   if (!assignment) {
     redirect("/not_found");
@@ -34,7 +37,7 @@ export default function AssignmentEditor() {
             rows={10}
             style={{ maxWidth: "600px" }}
             className="mb-4"
-            defaultValue={`The assignment is available online Submit a link to the landing page of`}
+            defaultValue={assignment.description}
           />
         </Col>
         <Col xs={2}></Col>
@@ -49,7 +52,7 @@ export default function AssignmentEditor() {
         <Col xs={8}>
           <FormControl
             id="wd-points"
-            defaultValue={100}
+            defaultValue={assignment.points}
             type="number"
             className="mb-4"
             style={{ maxWidth: "380px" }}
@@ -223,7 +226,7 @@ export default function AssignmentEditor() {
                 <input
                   className="form-control mb-4"
                   type="datetime-local"
-                  defaultValue="2026-02-01T00:00"
+                  defaultValue={assignment.available_date}
                   id="wd-assign-avail-from"
                   style={{ maxWidth: "180px" }}
                 />
@@ -237,11 +240,30 @@ export default function AssignmentEditor() {
                 <input
                   className="form-control mb-4"
                   type="datetime-local"
-                  defaultValue="2026-02-10T23:59"
+                  defaultValue={assignment.due_date}
                   id="wd-assign-avail-to"
                   style={{ maxWidth: "180px" }}
                 />
               </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={3}></Col>
+
+            <Col xs={8}>
+              <Link
+                href={`/courses/${assignment.course}/assignments`}
+                className="btn btn-secondary me-2"
+              >
+                Cancel
+              </Link>
+
+              <Link
+                href={`/courses/${assignment.course}/assignments`}
+                className="btn btn-danger"
+              >
+                Save
+              </Link>
             </Col>
           </Row>
         </Col>

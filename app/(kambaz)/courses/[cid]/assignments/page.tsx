@@ -95,9 +95,8 @@ export default function Assignments() {
 
                       <span className="text-muted small">
                         | <span className="fw-bold">Not available until</span>{" "}
-                        Jan 10 at 12:00 AM | <br />
-                        <span className="fw-bold">Due</span> Jan 25 at 11:59 PM
-                        | 309 pts
+                        {assignment.available_date.substring(0, 10)} at {assignment.available_date.substring(11, 16)} | <br />
+                        <span className="fw-bold">Due</span> {assignment.due_date.substring(0, 10)} at {assignment.due_date.substring(11, 16)} | {assignment.points} pts
                       </span>
                     </div>
                     <LessonControlButtons />

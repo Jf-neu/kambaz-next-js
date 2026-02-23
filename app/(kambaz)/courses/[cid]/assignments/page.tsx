@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
 import {
   Button,
   FormControl,
@@ -14,8 +16,12 @@ import { BsGripVertical, BsPlus } from "react-icons/bs";
 import LessonControlButtons from "../modules/lesson-control-buttons";
 import { IoEllipsisVertical } from "react-icons/io5";
 import Link from "next/link";
+import * as db from "../../../database";
+import { useParams } from "next/navigation";
 
 export default function Assignments() {
+  const { cid } = useParams();
+  const assignments = db.assignments;
   return (
     <div id="wd-assignments">
       <div
@@ -48,8 +54,8 @@ export default function Assignments() {
       </div>
       <br />
 
-      <ListGroup className="rounded-0" id="wd-modules">
-        <ListGroupItem className="wd-module p-0 mb-5 fs-5 border-gray">
+      <ListGroup className="rounded-0" id="wd-assignments">
+        <ListGroupItem className="wd-assignments p-0 mb-5 fs-5 border-gray">
           <div className="wd-title p-3 ps-2 bg-secondary">
             <BsGripVertical className="me-2 fs-3" />
             <GoTriangleDown className="me-2" />
@@ -60,84 +66,44 @@ export default function Assignments() {
               <IoEllipsisVertical className="fs-4" />
             </div>
           </div>
+
           <ListGroup className="wd-lessons rounded-0">
-            <ListGroupItem className="wd-lesson p-3 d-flex align-items-start">
-              <div className="me-3 d-flex align-items-center">
-                <BsGripVertical className="fs-3 me-2" />
-                <LuClipboardPenLine className="text-success" />
-              </div>
-
-              <div className="flex-grow-1">
-                <Link
-                  href="/courses/1234/assignments/120"
-                  className="text-decoration-none text-dark"
+            {assignments
+              .filter((assignment: any) => assignment.course === cid)
+              .map((assignment: any) => (
+                <ListGroup
+                  className="wd-lessons rounded-0"
+                  key={assignment._id}
                 >
-                  <div className="fw-bold">A1</div>
-                </Link>
+                  <ListGroupItem className="wd-lesson p-3 d-flex align-items-start">
+                    <div className="me-3 d-flex align-items-center">
+                      <BsGripVertical className="fs-3 me-2" />
+                      <LuClipboardPenLine className="text-success" />
+                    </div>
 
-                <span className="text-danger small">Multiple Modules </span>
+                    <div className="flex-grow-1">
+                      <Link
+                        href={`/courses/${cid}/assignments/${assignment._id}`}
+                        className="text-decoration-none text-dark"
+                      >
+                        <div className="fw-bold">{assignment.title}</div>
+                      </Link>
 
-                <span className="text-muted small">
-                  | <span className="fw-bold">Not available until</span> Jan 10
-                  at 12:00 AM | <br />
-                  <span className="fw-bold">Due</span> Jan 25 at 11:59 PM | 309
-                  pts
-                </span>
-              </div>
-              <LessonControlButtons />
-            </ListGroupItem>
+                      <span className="text-danger small">
+                        Multiple Modules{" "}
+                      </span>
 
-            <ListGroupItem className="wd-lesson p-3 d-flex align-items-start">
-              <div className="me-3 d-flex align-items-center">
-                <BsGripVertical className="fs-3 me-2" />
-                <LuClipboardPenLine className="text-success" />
-              </div>
-
-              <div className="flex-grow-1">
-                <Link
-                  href="/courses/1234/assignments/121"
-                  className="text-decoration-none text-dark"
-                >
-                  <div className="fw-bold">A2</div>
-                </Link>
-
-                <span className="text-danger small">Multiple Modules </span>
-
-                <span className="text-muted small">
-                  | <span className="fw-bold">Not available until</span> Jan 24
-                  at 12:00 AM | <br />
-                  <span className="fw-bold">Due</span> Feb 8 at 11:59 PM | 396
-                  pts
-                </span>
-              </div>
-              <LessonControlButtons />
-            </ListGroupItem>
-
-            <ListGroupItem className="wd-lesson p-3 d-flex align-items-start">
-              <div className="me-3 d-flex align-items-center">
-                <BsGripVertical className="fs-3 me-2" />
-                <LuClipboardPenLine className="text-success" />
-              </div>
-
-              <div className="flex-grow-1">
-                <Link
-                  href="/courses/1234/assignments/122"
-                  className="text-decoration-none text-dark"
-                >
-                  <div className="fw-bold">A3</div>
-                </Link>
-
-                <span className="text-danger small">Multiple Modules </span>
-
-                <span className="text-muted small">
-                  | <span className="fw-bold">Not available until</span> Jan 7
-                  at 12:00 AM | <br />
-                  <span className="fw-bold">Due</span> Feb 22 at 11:59 PM | 198
-                  pts pts
-                </span>
-              </div>
-              <LessonControlButtons />
-            </ListGroupItem>
+                      <span className="text-muted small">
+                        | <span className="fw-bold">Not available until</span>{" "}
+                        Jan 10 at 12:00 AM | <br />
+                        <span className="fw-bold">Due</span> Jan 25 at 11:59 PM
+                        | 309 pts
+                      </span>
+                    </div>
+                    <LessonControlButtons />
+                  </ListGroupItem>
+                </ListGroup>
+              ))}
           </ListGroup>
         </ListGroupItem>
       </ListGroup>

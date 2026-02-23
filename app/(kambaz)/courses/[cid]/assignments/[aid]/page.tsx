@@ -1,6 +1,18 @@
+"use client"
 import { Row, Col, FormControl, FormSelect } from "react-bootstrap";
+import { redirect, useParams } from "next/navigation";
+import * as db from "../../../../database";
 
 export default function AssignmentEditor() {
+  const { aid } = useParams();
+  const assignments = db.assignments;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const assignment = assignments.find((assignment: any) => assignment._id === aid)
+
+  if (assignment === null) {
+    redirect("/not_found");
+  }
+
   return (
     <div id="wd-assignments-editor">
       <Row>
@@ -11,8 +23,8 @@ export default function AssignmentEditor() {
           </label>
           <FormControl
             id="wd-name"
-            placeholder="username"
-            defaultValue={"A1"}
+            placeholder="assignment name"
+            defaultValue={aid}
             className="mb-4"
             style={{ maxWidth: "600px" }}
           />

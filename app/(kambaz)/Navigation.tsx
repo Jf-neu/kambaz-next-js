@@ -23,16 +23,16 @@ export default function KambazNavigation() {
         <img src="/images/NEU.png" width="75px" /></ListGroupItem>
       <ListGroupItem as={Link} href="/account"
         className={`text-center border-0 bg-black
-            ${pathname.includes("Account") ? "bg-white text-danger" : "bg-black text-white"}`}>
+            ${pathname.includes("account") ? "bg-white text-danger" : "bg-black text-white"}`}>
         <FaRegCircleUser
-          className={`fs-1 ${pathname.includes("Account") ? "text-danger" : "text-white"}`} />
+          className={`fs-1 ${pathname.includes("account") ? "text-danger" : "text-white"}`} />
         <br />
         Account
       </ListGroupItem>
       {links.map((link) => (
         <ListGroupItem key={link.path} as={Link} href={link.path}
           className={`bg-black text-center border-0
-            ${pathname.includes(link.label) ? "text-danger bg-white":"text-white bg-black"}`}>
+            ${pathname.includes(link.path) ? "text-danger bg-white":"text-white bg-black"}`}>
           {link.icon({ className: "fs-1 text-danger"})}
           <br />
           {link.label}

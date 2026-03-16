@@ -13,9 +13,6 @@ import UrlEncoding from "./url-encoding";
 import Link from "next/link";
 import store from "./store";
 import { Provider } from "react-redux";
-import HelloRedux from "./redux/hello";
-import CounterRedux from "./redux/counter-redux";
-import TodoList from "./redux/todos/todos-list";
 
 export default function lab4() {
   function sayHello() {

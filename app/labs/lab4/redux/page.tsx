@@ -1,23 +1,29 @@
-import CounterRedux from "./counter-redux";
-import HelloRedux from "./hello";
-import TodoList from "./todos/todos-list";
+"use client";
+
+import store from "../store";
+import { Provider } from "react-redux";
+import HelloRedux from "../redux/hello";
+import CounterRedux from "../redux/counter-redux";
+import TodoList from "../redux/todos/todos-list";
 
 export default function ReduxExamples() {
   return (
-    <div>
-      <h2>Redux Examples</h2>
-
+    <Provider store={store}>
       <div>
-        <HelloRedux />
-      </div>
+        <h2>Redux Examples</h2>
 
-      <div>
-        <CounterRedux />
-      </div>
+        <div>
+          <HelloRedux />
+        </div>
 
-      <div>
-        <TodoList />
+        <div>
+          <CounterRedux />
+        </div>
+
+        <div>
+          <TodoList />
+        </div>
       </div>
-    </div>
+    </Provider>
   );
 }

@@ -13,7 +13,6 @@ import UrlEncoding from "./url-encoding";
 import Link from "next/link";
 import store from "./store";
 import { Provider } from "react-redux";
-import { Suspense } from "react";
 
 export default function lab4() {
   function sayHello() {
@@ -66,9 +65,7 @@ export default function lab4() {
         </div>
 
         <div>
-          <Suspense fallback={<div>Loading...</div>}>
-            <UrlEncoding />
-          </Suspense>
+          <UrlEncoding />
         </div>
 
         <Link href="./lab4/redux">Redux Examples</Link>

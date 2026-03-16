@@ -3,7 +3,7 @@
 
 import { useSearchParams } from "next/navigation";
 
-export const dynamic = "force-dynamic";
+
 export default function QueryCalculator() {
  const searchParams = useSearchParams();
 
@@ -35,4 +35,3 @@ export default function QueryCalculator() {
    </div>
  );
 }
-

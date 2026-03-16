@@ -1,59 +1,89 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+
 import { Row, Col, FormControl, FormSelect } from "react-bootstrap";
-import { redirect, useParams } from "next/navigation";
-import Link from "next/link";
-import * as db from "../../../../database";
+import { useParams, useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../../store";
+import { updateAssignment } from "../reducer";
+import { useState } from "react";
 
 export default function AssignmentEditor() {
-  const { aid } = useParams();
-  const assignments = db.assignments;
-  const assignment = assignments.find(
-    (assignment: any) => assignment._id === aid,
+  const { aid, cid } = useParams();
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const { assignments } = useSelector(
+    (state: RootState) => state.assignmentsReducer,
   );
 
-  if (!assignment) {
-    redirect("/not_found");
-  }
+  const assignment = assignments.find((a: any) => a._id === aid);
+
+  const [editedAssignment, setEditedAssignment] = useState({ ...assignment });
+  
+  if (!assignment) return null;
+
+  const save = () => {
+    dispatch(updateAssignment(editedAssignment));
+    router.push(`/courses/${cid}/assignments`);
+  };
+
+  const cancel = () => {
+    router.push(`/courses/${cid}/assignments`);
+  };
 
   return (
     <div id="wd-assignments-editor">
       <Row>
         <Col xs={2}></Col>
+
         <Col xs={8}>
-          <label htmlFor="wd-name" className="pb-2 pt-2">
-            Assignment Name
-          </label>
+          <label className="pb-2 pt-2">Assignment Name</label>
           <FormControl
-            id="wd-name"
-            placeholder="assignment name"
-            defaultValue={assignment.title}
+            value={editedAssignment.title}
+            onChange={(e) =>
+              setEditedAssignment({
+                ...editedAssignment,
+                title: e.target.value,
+              })
+            }
             className="mb-4"
             style={{ maxWidth: "600px" }}
           />
+
           <FormControl
-            id="wd-description"
             as="textarea"
             rows={10}
-            style={{ maxWidth: "600px" }}
+            value={editedAssignment.description}
+            onChange={(e) =>
+              setEditedAssignment({
+                ...editedAssignment,
+                description: e.target.value,
+              })
+            }
             className="mb-4"
-            defaultValue={assignment.description}
+            style={{ maxWidth: "600px" }}
           />
         </Col>
+
         <Col xs={2}></Col>
       </Row>
 
       <Row>
         <Col xs={4}>
-          <label htmlFor="wd-points" className="text-end w-100">
-            Points
-          </label>
+          <label className="text-end w-100">Points</label>
         </Col>
+
         <Col xs={8}>
           <FormControl
-            id="wd-points"
-            defaultValue={assignment.points}
             type="number"
+            value={editedAssignment.points}
+            onChange={(e) =>
+              setEditedAssignment({
+                ...editedAssignment,
+                points: Number(e.target.value),
+              })
+            }
             className="mb-4"
             style={{ maxWidth: "380px" }}
           />
@@ -62,13 +92,11 @@ export default function AssignmentEditor() {
 
       <Row>
         <Col xs={4}>
-          <label htmlFor="wd-assignment-group" className="text-end w-100">
-            Assignment Group
-          </label>
+          <label className="text-end w-100">Assignment Group</label>
         </Col>
+
         <Col xs={8}>
           <FormSelect
-            id="wd-select-one-assignment"
             defaultValue="ASSIGNMENTS"
             className="mb-4"
             style={{ maxWidth: "380px" }}
@@ -83,187 +111,69 @@ export default function AssignmentEditor() {
 
       <Row>
         <Col xs={4}>
-          <label htmlFor="wd-grade-display" className="text-end w-100">
-            Display Grade as
-          </label>
-        </Col>
-        <Col xs={8}>
-          <FormSelect
-            id="wd-select-one-grade"
-            defaultValue="PERCENTAGE"
-            className="mb-4"
-            style={{ maxWidth: "380px" }}
-          >
-            <option value="PERCENTAGE">Percentage</option>
-            <option value="LETTER">Letter</option>
-            <option value="FLOAT">Float</option>
-            <option value="FRACTION">Fraction</option>
-          </FormSelect>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col xs={4}>
-          <div className="text-end w-100">Submission Type</div>
-        </Col>
-        <Col xs={8}>
-          <FormSelect
-            id="wd-select-one-submission"
-            defaultValue="ONLINE"
-            className="mb-4"
-            style={{ maxWidth: "380px" }}
-          >
-            <option value="ONLINE">Online</option>
-            <option value="OFFLINE">In-person</option>
-          </FormSelect>
-          <span className="fw-bold">Online Entry Options</span>
-          <div
-            className="form-check mb-4"
-            id="wd-chkbox-text-entry"
-            style={{ maxWidth: "380px" }}
-          >
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="wd-chkbox-text-entry"
-            />
-            <label className="form-check-label" htmlFor="wd-chkbox-text-entry">
-              Text Entry
-            </label>
-          </div>
-          <div
-            className="form-check mb-4"
-            id="wd-chkbox-url"
-            style={{ maxWidth: "380px" }}
-          >
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="wd-chkbox-url"
-            />
-            <label className="form-check-label" htmlFor="wd-chkbox-text-entry">
-              Website URL
-            </label>
-          </div>
-          <div
-            className="form-check mb-4"
-            id="wd-chkbox-recording"
-            style={{ maxWidth: "380px" }}
-          >
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="wd-chkbox-recording"
-            />
-            <label className="form-check-label" htmlFor="wd-chkbox-text-entry">
-              Media Recording
-            </label>
-          </div>
-          <div
-            className="form-check mb-4"
-            id="wd-chkbox-recording"
-            style={{ maxWidth: "380px" }}
-          >
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="wd-chkbox-annotation"
-            />
-            <label className="form-check-label" htmlFor="wd-chkbox-annotation">
-              Student Annotation
-            </label>
-          </div>
-          <div
-            className="form-check mb-4"
-            id="wd-chkbox-recording"
-            style={{ maxWidth: "380px" }}
-          >
-            <input
-              className="form-check-input"
-              type="checkbox"
-              id="wd-chkbox-file"
-            />
-            <label className="form-check-label" htmlFor="wd-chkbox-file">
-              File Uploads
-            </label>
-          </div>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col xs={4}>
           <div className="text-end w-100">Assign</div>
         </Col>
+
         <Col xs={8}>
-          <label htmlFor="wd-assign-range" className="fw-bold">
-            Assign to
-          </label>
-          <FormControl
-            id="wd-assign-range"
-            defaultValue={"Everyone"}
-            className="mb-4"
+          <label className="fw-bold">Due</label>
+          <input
+            className="form-control mb-4"
+            type="datetime-local"
+            value={editedAssignment.due_date}
+            onChange={(e) =>
+              setEditedAssignment({
+                ...editedAssignment,
+                due_date: e.target.value,
+              })
+            }
             style={{ maxWidth: "380px" }}
           />
-          <label htmlFor="wd-assign-date" className="fw-bold">
-            Due
-          </label>
-          <div className="form-group">
-            <input
-              className="form-control mb-4"
-              type="datetime-local"
-              defaultValue="2026-02-09T23:59"
-              id="wd-assign-date"
-              style={{ maxWidth: "380px" }}
-            />
-          </div>
 
           <Row>
             <Col xs={3}>
-              <label htmlFor="wd-assign-avail-from" className="fw-bold">
-                Available from
-              </label>
-              <div className="form-group">
-                <input
-                  className="form-control mb-4"
-                  type="datetime-local"
-                  defaultValue={assignment.available_date}
-                  id="wd-assign-avail-from"
-                  style={{ maxWidth: "180px" }}
-                />
-              </div>
+              <label className="fw-bold">Available from</label>
+              <input
+                className="form-control mb-4"
+                type="datetime-local"
+                value={editedAssignment.available_date}
+                onChange={(e) =>
+                  setEditedAssignment({
+                    ...editedAssignment,
+                    available_date: e.target.value,
+                  })
+                }
+                style={{ maxWidth: "180px" }}
+              />
             </Col>
+
             <Col xs={8}>
-              <label htmlFor="wd-assign-avail-to" className="fw-bold">
-                Until
-              </label>
-              <div className="form-group">
-                <input
-                  className="form-control mb-4"
-                  type="datetime-local"
-                  defaultValue={assignment.due_date}
-                  id="wd-assign-avail-to"
-                  style={{ maxWidth: "180px" }}
-                />
-              </div>
+              <label className="fw-bold">Until</label>
+              <input
+                className="form-control mb-4"
+                type="datetime-local"
+                value={editedAssignment.due_date}
+                onChange={(e) =>
+                  setEditedAssignment({
+                    ...editedAssignment,
+                    due_date: e.target.value,
+                  })
+                }
+                style={{ maxWidth: "180px" }}
+              />
             </Col>
           </Row>
+
           <Row>
             <Col xs={3}></Col>
 
             <Col xs={8}>
-              <Link
-                href={`/courses/${assignment.course}/assignments`}
-                className="btn btn-secondary me-2"
-              >
+              <button className="btn btn-secondary me-2" onClick={cancel}>
                 Cancel
-              </Link>
+              </button>
 
-              <Link
-                href={`/courses/${assignment.course}/assignments`}
-                className="btn btn-danger"
-              >
+              <button className="btn btn-danger" onClick={save}>
                 Save
-              </Link>
+              </button>
             </Col>
           </Row>
         </Col>

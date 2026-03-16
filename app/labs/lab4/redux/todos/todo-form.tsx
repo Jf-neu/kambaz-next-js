@@ -1,7 +1,6 @@
 import { ListGroupItem, Button, FormControl } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodo, updateTodo, setTodo } from "./todos-reducer";
-import { useSelector } from "react-redux";
 
 import { RootState } from "../../store";
 

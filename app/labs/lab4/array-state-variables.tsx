@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
 
@@ -21,22 +22,14 @@ export default function ArrayStateVariable() {
                 Add Element
             </Button>
 
-            <Table bordered >
-                <tbody>
-                    {array.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item}</td>
-                            <td style={{ width: "120px" }}>
-                                <Button
-                                    variant="danger"
-                                    onClick={() => deleteElement(index)}>
-                                    Delete
-                                </Button>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </Table>
+      <ListGroup>
+        {todos.map((todo: any) => (
+          <ListGroupItem key={todo.id}>
+            {todo.title}
+          </ListGroupItem>
+        ))}
+      </ListGroup>
+      <hr />
 
             <hr />
         </div>

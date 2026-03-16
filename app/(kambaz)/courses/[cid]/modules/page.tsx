@@ -8,10 +8,10 @@ import { BsGripVertical } from "react-icons/bs";
 import ModuleControlButtons from "./module-control-buttons";
 import LessonControlButtons from "./lesson-control-buttons";
 
+import { useState } from "react";
 export default function Modules() {
   const { cid } = useParams();
-  const modules = db.modules;
-  return (
+  const [modules, setModules] = useState<any[]>(db.modules);  return (
     <div>
       <div>
         <ModulesControls />

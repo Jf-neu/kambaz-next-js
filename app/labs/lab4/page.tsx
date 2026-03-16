@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import ArrayStateVariable from "./array-state-variables";
 import BooleanStateVariables from "./boolean-state-variables";
 import ClickEvent from "./click-event";
@@ -17,77 +17,68 @@ import HelloRedux from "./redux/hello";
 import CounterRedux from "./redux/counter-redux";
 import TodoList from "./redux/todos/todos-list";
 
-
 export default function lab4() {
-    function sayHello() {
-        alert("Hello");
-    }
+  function sayHello() {
+    alert("Hello");
+  }
 
-    return (
-        <Provider store={store}>
+  return (
+    <Provider store={store}>
+      <div id="wd-lab1">
+        <h2>Lab 4</h2>
+        <h3>React States</h3>
+        <Link href="./redux">Redux Examples</Link>
 
-            <div id="wd-lab1">
-                <h2>Lab 4</h2>
-                <h3>React States</h3>
-                <Link href="./redux">Redux Examples</Link>
+        <div>
+          <ClickEvent />
+        </div>
 
+        <div>
+          <PassingDataOnEvent />
+        </div>
 
-                <div>
-                    <ClickEvent />
-                </div>
+        <div>
+          <PassingFunctions theFunction={sayHello} />
+        </div>
 
-                <div>
-                    <PassingDataOnEvent />
-                </div>
+        <div>
+          <Counter />
+        </div>
 
-                <div>
-                    <PassingFunctions theFunction={sayHello} />
-                </div>
+        <div>
+          <BooleanStateVariables />
+        </div>
 
-                <div>
-                    <Counter />
-                </div>
+        <div>
+          <StringStateVariables />
+        </div>
 
-                <div>
-                    <BooleanStateVariables />
-                </div>
+        <div>
+          <DateStateVariable />
+        </div>
 
-                <div>
-                    <StringStateVariables />
-                </div>
+        <div>
+          <ObjectStateVariable />
+        </div>
 
-                <div>
-                    <DateStateVariable />
-                </div>
+        <div>
+          <ArrayStateVariable />
+        </div>
 
-                <div>
-                    <ObjectStateVariable />
-                </div>
+        <div>
+          <ParentStateComponent />
+        </div>
 
-                <div>
-                    <ArrayStateVariable />
-                </div>
+        <div>
+          <UrlEncoding />
+        </div>
 
-                <div>
-                    <ParentStateComponent />
-                </div>
-
-                <div>
-                    <UrlEncoding />
-                </div>
-
-                <div>
-                    <HelloRedux />
-                </div>
-
-                <div>
-                    <CounterRedux />
-                </div>
-
-                <div>
-                    <TodoList />
-                </div>
-            </div>
-        </Provider>
-    );
+        <Link href="./lab4/redux">Redux Examples</Link>
+        <hr />
+        <Link href="./lab4/react-context">React Context Examples</Link>
+        <hr />
+        <Link href="./lab4/zustand">Zustand Examples</Link>
+      </div>
+    </Provider>
+  );
 }

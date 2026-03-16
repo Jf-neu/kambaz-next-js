@@ -24,8 +24,6 @@ export default function lab4() {
       <div id="wd-lab1">
         <h2>Lab 4</h2>
         <h3>React States</h3>
-        <Link href="./redux">Redux Examples</Link>
-
         <div>
           <ClickEvent />
         </div>

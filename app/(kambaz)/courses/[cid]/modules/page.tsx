@@ -1,23 +1,35 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import { addModule, editModule, updateModule, deleteModule } from "./reducer";
+import {
+  setModules,
+  addModule,
+  editModule,
+  updateModule,
+  deleteModule,
+} from "./reducer";
+import { useState, useEffect } from "react";
+import * as client from "../../client";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../store";
-import { v4 as uuidv4 } from "uuid";
 import { useParams } from "next/navigation";
-import * as db from "../../../database";
 import { FormControl, ListGroup, ListGroupItem } from "react-bootstrap";
 import ModulesControls from "./modules-controls";
 import { BsGripVertical } from "react-icons/bs";
 import ModuleControlButtons from "./module-control-buttons";
 import LessonControlButtons from "./lesson-control-buttons";
-
-import { useState } from "react";
 export default function Modules() {
   const { cid } = useParams();
   const [moduleName, setModuleName] = useState("");
   const { modules } = useSelector((state: RootState) => state.modulesReducer);
   const dispatch = useDispatch();
+  const fetchModules = async () => {
+    const modules = await client.findModulesForCourse(cid as string);
+    dispatch(setModules(modules));
+  };
+  useEffect(() => {
+    fetchModules();
+  }, []);
+
   return (
     <div>
       <div>
@@ -35,7 +47,6 @@ export default function Modules() {
         <br />
         <ListGroup className="rounded-0" id="wd-modules">
           {modules
-            .filter((module: any) => module.course === cid)
             .map((module: any) => (
               <ListGroupItem
                 key={module._id}

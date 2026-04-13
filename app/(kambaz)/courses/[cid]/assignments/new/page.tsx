@@ -5,6 +5,7 @@ import { Button, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { addAssignment } from "../reducer";
 import { useParams, useRouter } from "next/navigation";
+import * as client from "../client";
 
 export default function AssignmentEditor() {
   const dispatch = useDispatch();
@@ -21,8 +22,12 @@ export default function AssignmentEditor() {
     course: cid,
   });
 
-  const saveAssignment = () => {
-    dispatch(addAssignment(assignment));
+  const saveAssignment = async () => {
+    const newAssignment = await client.createAssignmentForCourse(
+      cid as string,
+      assignment,
+    );
+    dispatch(addAssignment(newAssignment));
     router.push(`/courses/${cid}/assignments`);
   };
 
@@ -32,7 +37,6 @@ export default function AssignmentEditor() {
 
   return (
     <div id="wd-assignment-editor" className="p-4">
-
       <FormGroup className="mb-3">
         <FormLabel>Name</FormLabel>
         <FormControl

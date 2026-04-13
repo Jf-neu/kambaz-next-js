@@ -19,8 +19,10 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
-import { deleteAssignment } from "./reducer";
 import { FaTrash } from "react-icons/fa";
+import * as client from "./client";
+import { editAssignment, deleteAssignment } from "./reducer";
+import { useEffect } from "react";
 
 export default function Assignments() {
   const { cid } = useParams();
@@ -29,9 +31,23 @@ export default function Assignments() {
   const { assignments } = useSelector(
     (state: RootState) => state.assignmentsReducer,
   );
-  const { currentUser  } = useSelector((state: RootState) => state.accountReducer);
-// @ts-expect-error dadw
+  const { currentUser } = useSelector(
+    (state: RootState) => state.accountReducer,
+  );
+  // @ts-expect-error dadw
   const isFaculty = currentUser?.role === "faculty";
+  const fetchAssignments = async () => {
+    const data = await client.findAssignmentsForCourse(cid as string);
+    dispatch(editAssignment(data));
+  };
+  useEffect(() => {
+    fetchAssignments();
+  }, [cid]);
+
+  const removeAssignment = async (assignmentId: string) => {
+    await client.deleteAssignment(assignmentId);
+    dispatch(deleteAssignment(assignmentId));
+  };
 
   return (
     <div id="wd-assignments">
@@ -108,14 +124,14 @@ export default function Assignments() {
                       <FaTrash
                         className="text-secondary fs-5 ms-2"
                         role="button"
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           e.preventDefault();
                           if (
                             confirm(
                               "Are you sure you want to delete this assignment?",
                             )
                           ) {
-                            dispatch(deleteAssignment(assignment._id));
+                            await removeAssignment(assignment._id);
                           }
                         }}
                       />

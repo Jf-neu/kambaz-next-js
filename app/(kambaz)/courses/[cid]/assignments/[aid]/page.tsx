@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store";
 import { updateAssignment } from "../reducer";
 import { useState } from "react";
+import * as client from "../client";
 
 export default function AssignmentEditor() {
   const { aid, cid } = useParams();
@@ -20,11 +21,12 @@ export default function AssignmentEditor() {
   const assignment = assignments.find((a: any) => a._id === aid);
 
   const [editedAssignment, setEditedAssignment] = useState({ ...assignment });
-  
+
   if (!assignment) return null;
 
-  const save = () => {
-    dispatch(updateAssignment(editedAssignment));
+  const save = async () => {
+    const updated = await client.updateAssignment(editedAssignment);
+    dispatch(updateAssignment(updated));
     router.push(`/courses/${cid}/assignments`);
   };
 

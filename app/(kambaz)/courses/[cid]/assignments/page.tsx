@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
 import { FaTrash } from "react-icons/fa";
 import * as client from "./client";
-import { editAssignment, deleteAssignment } from "./reducer";
+import { setAssignments, deleteAssignment } from "./reducer";
 import { useEffect } from "react";
 
 export default function Assignments() {
@@ -34,11 +34,11 @@ export default function Assignments() {
   const { currentUser } = useSelector(
     (state: RootState) => state.accountReducer,
   );
-  // @ts-expect-error dadw
-  const isFaculty = currentUser?.role === "faculty";
+  const isFaculty =
+    currentUser?.role === "FACULTY" || currentUser?.role === "ADMIN";
   const fetchAssignments = async () => {
     const data = await client.findAssignmentsForCourse(cid as string);
-    dispatch(editAssignment(data));
+    dispatch(setAssignments(data));
   };
   useEffect(() => {
     fetchAssignments();
@@ -94,7 +94,6 @@ export default function Assignments() {
 
           <ListGroup className="rounded-0">
             {assignments
-              .filter((assignment: any) => assignment.course === cid)
               .map((assignment: any) => (
                 <ListGroupItem
                   key={assignment._id}

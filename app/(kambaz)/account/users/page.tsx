@@ -47,7 +47,6 @@ export default function Users() {
     setUsers(users);
   };
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchUsers();
   }, [uid]);
   return (

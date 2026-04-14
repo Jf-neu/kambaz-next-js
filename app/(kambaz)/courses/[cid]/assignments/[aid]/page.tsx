@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store";
 import { updateAssignment } from "../reducer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as client from "../client";
 
 export default function AssignmentEditor() {
@@ -20,8 +20,17 @@ export default function AssignmentEditor() {
 
   const assignment = assignments.find((a: any) => a._id === aid);
 
-  const [editedAssignment, setEditedAssignment] = useState({ ...assignment });
+  const [editedAssignment, setEditedAssignment] = useState<any>({});
+  const fetchAssignment = async () => {
+    const data = await client.findAssignmentById(aid as string);
+    setEditedAssignment(data);
+  };
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchAssignment();
+  }, [aid]);
 
+  if (!editedAssignment._id) return null;
   if (!assignment) return null;
 
   const save = async () => {

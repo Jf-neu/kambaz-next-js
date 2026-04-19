@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NavLink } from "react-bootstrap";
 export default function labs() {
   return (
     <div id="wd-labs">
@@ -24,6 +25,12 @@ export default function labs() {
         <li>
           <Link href="/" id="wd-kambaz-link">
             Kambaz </Link>
+        </li>
+        <li>
+          <NavLink href="https://github.com/Jf-neu/kambaz-next-js">GitHub</NavLink>
+        </li>        
+        <li>
+          <NavLink href="https://github.com/Jf-neu/kambaz-next-js">GitHub</NavLink>
         </li>
       </ul>
     </div>

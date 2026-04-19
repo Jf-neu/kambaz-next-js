@@ -27,10 +27,10 @@ export default function labs() {
             Kambaz </Link>
         </li>
         <li>
-          <NavLink href="https://github.com/Jf-neu/kambaz-next-js">GitHub Next Js</NavLink>
+          <Link href="https://github.com/Jf-neu/kambaz-next-js">GitHub Next Js</Link>
         </li>        
         <li>
-          <NavLink href="https://github.com/Jf-neu/kambaz-node-server-app">GitHub Node</NavLink>
+          <Link href="https://github.com/Jf-neu/kambaz-node-server-app">GitHub Node</Link>
         </li>
       </ul>
     </div>
